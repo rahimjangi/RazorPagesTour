@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/WiredBrainCoffeeAdmin.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
@@ -65,18 +65,26 @@
                 <div class="col-md-4">
                     <div class="footer-pic">
                         @{
-                           var urlPath = Context.Request.Path;
+                            var urlPath = Context.Request.Path;
                         }
-                        @if (IsSectionDefined("RightFooter"))
+                        @switch (urlPath.Value?.ToLower())
                         {
-                            @RenderSection("RightFooter")
-                            ;
+                            case "/":
+                                <img  src="~/images/menu/cake.png"/>
+                                break;
+                            case "/products/addproduct":
+                                <img src=""/>
+                                break;
+                            case "/products/viewallproducts":
+                                <img src="" />
+                                break;
+                            case "/help":
+                                <img src="" />
+                                break;
+                            default:
+                                <img src="~/images/menu/bagel.png"/>
+                                break;
                         }
-                        else
-                        {
-                            <img src="~/images/menu/bagel.png" />
-                        }
-                        
 
                     </div>
                 </div>
