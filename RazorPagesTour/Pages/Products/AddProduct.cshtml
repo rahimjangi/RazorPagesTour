@@ -4,3 +4,48 @@
 }
 <h1>Add new product</h1>
 <hr />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" asp-page="AddProduct">
+                <div class="mb-3">
+                    <label asp-for="Product.Name">Name</label>
+                    <input  asp-for="Product.Name" class="form-control"/>
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Name"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.ShortDescription">Short Description</label>
+                    <input asp-for="Product.ShortDescription" class="form-control" />
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.ShortDescription"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Description">Description</label>
+                    <textarea asp-for="Product.Description" class="form-control" ></textarea>
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Description"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Price">Price</label>
+                    <input asp-for="Product.Price" class="form-control" />
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Price"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Category">Category</label>
+                    <select asp-for="Product.Category" class="form-control" >
+                        <option value="Beverage">Beverage</option>
+                        <option value="Food">Food</option>
+                        </select>
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Category"></span>
+                </div>
+                <button class="btn btn-outline-info">Create</button>
+            </form>
+
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</div>
+
+@section RightFooter{
+    <img  src="~/images/cup.png"/>
+}
