@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" asp-page="AddProduct">
+            <form method="post" asp-page="AddProduct" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label asp-for="Product.Name">Name</label>
                     <input  asp-for="Product.Name" class="form-control"/>
@@ -37,6 +37,11 @@
                         <option value="Food">Food</option>
                         </select>
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.Category"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Upload">Image File</label>
+                    <input asp-for="Product.Upload" class="form-control" />
+                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Upload"></span>
                 </div>
                 <button class="btn btn-outline-info">Create</button>
             </form>

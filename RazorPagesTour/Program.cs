@@ -10,6 +10,8 @@ builder.Services.AddDbContext<ApplicationDataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
 
+builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
+
 var app = builder.Build();
 
 

@@ -19,7 +19,7 @@ namespace RazorPagesTour.Data
         [Required]
         public decimal Price { get; set; }
 
-        public string ImageFile { get; set; } = string.Empty;
+        public string ImageFileName { get; set; } = string.Empty;
 
         [Required]
         public DateTime Created { get; set; }
