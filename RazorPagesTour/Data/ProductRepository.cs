@@ -19,6 +19,16 @@ public class ProductRepository : IProductRepository<Product>
 
     public async Task Delete(Product obj)
     {
+        var local = _context.Set<Product>()
+.Local
+.FirstOrDefault(entry => entry.Id.Equals(obj.Id));
+
+        // check if local is not null 
+        if (local != null)
+        {
+            // detach
+            _context.Entry(local).State = EntityState.Detached;
+        }
         _context.Products.Remove(obj);
         await _context.SaveChangesAsync();
     }

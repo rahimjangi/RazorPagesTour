@@ -1,58 +1,60 @@
-﻿@page
-@model RazorPagesTour.Pages.Products.AddProductModel
+﻿@page "/products/delete/{Id:int}"
+@model RazorPagesTour.Pages.Products.DeleteProductModel
 @{
 }
-<h1>Add new product</h1>
+
+<h1>Delete product</h1>
 <hr />
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" asp-page="AddProduct" enctype="multipart/form-data">
+            <form method="post" asp-page="DeleteProduct" enctype="multipart/form-data">
+                <input asp-for="Product.Id" value="@(ViewContext.RouteData.Values["Id"])" hidden/>
                 <div class="mb-3">
                     <label asp-for="Product.Name">Name</label>
-                    <input  asp-for="Product.Name" class="form-control"/>
+                    <input asp-for="Product.Name" class="form-control" disabled />
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.Name"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Product.ShortDescription">Short Description</label>
-                    <input asp-for="Product.ShortDescription" class="form-control" />
+                    <input asp-for="Product.ShortDescription" class="form-control" disabled />
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.ShortDescription"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Product.Description">Description</label>
-                    <textarea asp-for="Product.Description" class="form-control" ></textarea>
+                    <textarea asp-for="Product.Description" class="form-control" disabled></textarea>
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.Description"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Product.Price">Price</label>
-                    <input asp-for="Product.Price" class="form-control" />
+                    <input asp-for="Product.Price" class="form-control" readonly/>
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.Price"></span>
                 </div>
                 <div class="mb-3">
                     <label asp-for="Product.Category">Category</label>
-                    <select asp-for="Product.Category" class="form-control" >
+                    <select asp-for="Product.Category" class="form-control" disabled >
                         <option value="Beverage">Beverage</option>
                         <option value="Food">Food</option>
-                        </select>
+                    </select>
                     <span class="text-danger field-validation-valid" asp-validation-for="Product.Category"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="Product.Upload">Image File</label>
-                    <input asp-for="Product.Upload" class="form-control" />
-                    <span class="text-danger field-validation-valid" asp-validation-for="Product.Upload"></span>
+                    <label asp-for="Product.ImageFileName">Current Image</label>
+                    <input type="hidden" asp-for="Product.ImageFileName" class="form-control" />
+                    <br />
+                    <img src="~/images/menu/@Model.Product.ImageFileName"/>
+
                 </div>
-                <button class="btn btn-outline-info">Create</button>
+                <button class="btn btn-outline-info">Delete</button>
             </form>
 
         </div>
-        <div class="col-md-6">
-            <partial name="HelpWidget" />
-        </div>
+        <div class="col-md-6"></div>
     </div>
 </div>
 
 @section RightFooter{
-    <img  src="~/images/cup.png"/>
+    <img src="~/images/cup.png" />
 }
