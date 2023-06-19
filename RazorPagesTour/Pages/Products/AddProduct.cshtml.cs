@@ -6,12 +6,12 @@ namespace RazorPagesTour.Pages.Products;
 
 public class AddProductModel : PageModel
 {
-    private readonly ApplicationDataContext _context;
+    private readonly IProductRepository<Product> _productRepository;
     private readonly IWebHostEnvironment _environment;
-    public AddProductModel(ApplicationDataContext context, IWebHostEnvironment environment)
+    public AddProductModel(IWebHostEnvironment environment, IProductRepository<Product> productRepository)
     {
-        _context = context;
         _environment = environment;
+        _productRepository = productRepository;
     }
     [BindProperty]
     public Product Product { get; set; } = default!;
@@ -35,8 +35,7 @@ public class AddProductModel : PageModel
             }
         }
         Product.Created = DateTime.Now;
-        _context.Products.Add(Product);
-        var numberOfRecords = _context.SaveChanges();
+        await _productRepository.Add(Product);
         return RedirectToPage("ViewAllProducts");
 
     }

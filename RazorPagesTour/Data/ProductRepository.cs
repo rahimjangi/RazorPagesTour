@@ -33,9 +33,22 @@ public class ProductRepository : IProductRepository<Product>
         return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task Update(Product obj)
+    public void Update(Product obj)
     {
-        _context.Products.Update(obj);
-        await _context.SaveChangesAsync();
+        var local = _context.Set<Product>()
+    .Local
+    .FirstOrDefault(entry => entry.Id.Equals(obj.Id));
+
+        // check if local is not null 
+        if (local != null)
+        {
+            // detach
+            _context.Entry(local).State = EntityState.Detached;
+        }
+        // set Modified flag in your entry
+        _context.Entry(obj).State = EntityState.Modified;
+
+        // save 
+        _context.SaveChanges();
     }
 }
